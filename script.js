@@ -4,9 +4,10 @@ const treeImage = document.getElementById("treeImage");
 const overlay = document.querySelector(".overlay");
 const reload = document.querySelector(".reload");
 const img = new Image();
-img.src = "snow-texture.png";
+img.src = "snow-texture.jpg";
 let isCompleted = false; // Флаг для проверки, что елочка уже раскрашена
 
+// Отключаем масштабирование страницы с помощью мыши или касаний
 window.addEventListener("mousewheel", function (e) {
   if (e.ctrlKey) {
     e.preventDefault();
@@ -16,34 +17,36 @@ window.addEventListener("mousewheel", function (e) {
 document.addEventListener(
   "touchstart",
   (e) => {
-    // Если используется более одного пальца
     if (e.touches.length > 1) {
-      e.preventDefault(); // Отключаем действие по умолчанию
+      e.preventDefault();
     }
   },
   { passive: false }
-); // { passive: false } важно для предотвращения поведения по умолчанию
+);
 document.addEventListener(
   "touchmove",
   (e) => {
     if (e.touches.length > 1) {
-      e.preventDefault(); // Отключаем зумирование двумя пальцами
+      e.preventDefault();
     }
   },
   { passive: false }
-); // { passive: false } важно для отмены действия по умолчанию
+);
 
+// Кнопка перезагрузки
 reload.addEventListener("click", () => {
   location.reload();
 });
-// Устанавливаем размеры canvas в соответствии с изображением
+
+// Устанавливаем размеры canvas в соответствии с экраном
 function resizeCanvas() {
-  canvas.width = 1080;
-  canvas.height = 1920;
+  canvas.width = 1920; // Ширина экрана
+  canvas.height = 1080; // Высота экрана
+
   const pattern = ctx.createPattern(img, "repeat");
   ctx.fillStyle = pattern;
+
   // Рисуем черный слой (имитация черно-белого фильтра)
-  // ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -56,7 +59,7 @@ function erase(e) {
 
   ctx.globalCompositeOperation = "destination-out";
   ctx.beginPath();
-  ctx.arc(x, y, 100, 0, Math.PI * 2);
+  ctx.arc(x, y, 100, 0, Math.PI * 2); // Радиус стирания
   ctx.fill();
 
   checkCompletion(); // Проверяем, достигнуты ли 80% прозрачности
@@ -82,7 +85,7 @@ function checkCompletion() {
     (transparentPixels / totalPixels) * 100
   );
 
-  if (transparentPercentage > 70) {
+  if (transparentPercentage > 90) {
     isCompleted = true; // Устанавливаем флаг завершения
     overlay.classList.remove("hide");
   }

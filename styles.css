@@ -20,13 +20,14 @@ body {
   background-size: cover;
 }
 h1 {
-  margin-top: 100px;
-  font-size: 56px;
-  color: #346e28;
+  margin-top: 50px;
+  font-size: 56px; /* Увеличен размер для больших экранов */
+  color: #ffffff;
   font-family: Duality;
   letter-spacing: 10px;
   position: absolute;
-  top: -40px;
+  text-shadow: #fc0 1px 0 10px;
+  top: 20px; /* Отрегулировано положение */
   z-index: 10000;
 }
 
@@ -40,25 +41,23 @@ h1 {
 
 .tree-wrapper {
   position: relative;
-  height: 100%;
-  width: 100%;
-  max-width: 1080px;
-  height: auto;
+  width: 1920px; /* Задаем фиксированную ширину для экрана Full HD */
+  height: 1080px; /* Фиксированная высота для экрана Full HD */
 }
 
 #treeCanvas {
   position: absolute;
-  top: -92px;
+  top: 0; /* Убираем смещение по вертикали */
   left: 0;
-  height: 100%;
   width: 100%;
-  height: auto;
+  height: 100%; /* Растягиваем canvas на весь экран */
 }
 
 #treeImage {
   display: block;
-  width: 100%;
-  height: auto;
+  margin: 0 auto;
+  width: 35%;
+  height: auto; /* Сохраняем пропорции изображения */
 }
 
 .overlay {
@@ -76,12 +75,13 @@ h1 {
 }
 .message {
   color: #f0f8ff;
-  font-size: 40px;
-  margin-bottom: 100px;
+  font-size: 50px; /* Увеличен размер текста для больших экранов */
+  margin-bottom: 50px; /* Скорректирован отступ */
   font-family: Duality;
   letter-spacing: 10px;
   text-align: center;
 }
 .reload {
-  width: 200px;
+  width: 250px; /* Увеличен размер кнопки для удобства на большом экране */
+  height: auto;
 }
